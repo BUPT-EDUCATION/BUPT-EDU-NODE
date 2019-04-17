@@ -1,5 +1,5 @@
-const teacherDB = require('../model/teacher');
+const teacherService = require('../service/teacher');
 
-exports.ceshi = async ctx => {
-    ctx.body = await teacherDB.ceshi();
+exports.getLabels = async ctx => {
+    ctx.body = await teacherService.selectAllLabels();
 }

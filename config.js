@@ -1,6 +1,6 @@
 const config = {
     port: 3000,
-    urlPrefix: '/api',
+    urlPrefix: '/api/teacher',
     database: {
         DATABASE: 'bupt-edu',
         USERNAME: 'root',
