@@ -10,3 +10,14 @@ exports.selectAllLabels = async () => {
         };
     }));
 }
+
+exports.addQuestion = async (data) => {
+    const { question_title, question_content, question_type, labels, answers } = data;
+    const question_id = await teacherDB.insertQuestion({ question_title, question_content, question_type });
+    await teacherDB.insertAnswers({ question_id, answers });
+    await teacherDB.insertQuestionLabelRelation({ question_id, labels });
+}
+
+exports.deleteQuestion = async (data) => {
+    const { question_id } = data;
+}
