@@ -6,5 +6,5 @@ exports.getLabels = async ctx => {
 
 exports.addQuestion = async ctx => {
     await teacherService.addQuestion(ctx.request.body);
-    ctx.body = {message: '插入成功'};
+    ctx.body = { message: '插入成功' };
 }

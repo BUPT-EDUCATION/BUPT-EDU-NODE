@@ -6,6 +6,6 @@ router.get(`${config.urlPrefix}/labels`, controller.getLabels);
 
 router.post(`${config.urlPrefix}/question`, controller.addQuestion);
 
-router.delete(`${config.urlPrefix}/question`, controller.deleteQuestion)
+// router.delete(`${config.urlPrefix}/question`, controller.deleteQuestion)
 
 module.exports = router;
