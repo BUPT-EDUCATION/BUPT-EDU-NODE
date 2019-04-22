@@ -3,8 +3,8 @@ const answerDB = require('../model/answer');
 const relationQuestionLabelDB = require('../model/relationQuestionLabel');
 
 exports.addQuestion = async (data) => {
-    const { question_title, question_content, question_type, labels, answers } = data;
-    const question_id = await questionDB.insertQuestion({ question_title, question_content, question_type });
+    const { user_id, question_title, question_content, question_type, labels, answers } = data;
+    const question_id = await questionDB.insertQuestion({ user_id, question_title, question_content, question_type });
     await answerDB.insertAnswers({ question_id, answers });
     await relationQuestionLabelDB.insertQuestionLabelRelation({ question_id, labels });
 }
@@ -39,5 +39,5 @@ exports.getQuestion = async (data) => {
 
 exports.getQuestionList = async (data) => {
     const { user_id } = data;
-    await questionDB.selectQuestions({ user_id });
+    return await questionDB.selectQuestions({ user_id });
 }

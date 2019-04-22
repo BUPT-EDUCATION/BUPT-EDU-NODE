@@ -1,11 +1,12 @@
 const query = require('../mysql/db');
-const moment = require('moment');
+const timeUtil = require('../util/time');
 
 exports.insertQuestion = async (data) => {
-    const { question_title, question_content, question_type } = data;
+    const { user_id, question_title, question_content, question_type } = data;
+    const create_time = timeUtil.getCurTime();
     let sql = ` INSERT INTO base_question
-                (question_title, question_content, question_type, create_time) VALUES
-                ('${question_title}', '${question_content}', ${question_type}, '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}')`;
+                (question_title, question_content, question_type, create_time, user_id) VALUES
+                ('${question_title}', '${question_content}', ${question_type}, '${create_time}', ${user_id})`;
     return (await query(sql)).insertId;
 }
 
