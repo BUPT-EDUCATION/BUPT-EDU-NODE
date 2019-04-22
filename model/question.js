@@ -1,10 +1,11 @@
 const query = require('../mysql/db');
+const moment = require('moment');
 
 exports.insertQuestion = async (data) => {
     const { question_title, question_content, question_type } = data;
     let sql = ` INSERT INTO base_question
-                (question_title, question_content, question_type) VALUES
-                ('${question_title}', '${question_content}', ${question_type})`;
+                (question_title, question_content, question_type, create_time) VALUES
+                ('${question_title}', '${question_content}', ${question_type}, '${moment(new Date()).format('YYYY-MM-DD HH:mm:ss')}')`;
     return (await query(sql)).insertId;
 }
 
@@ -28,6 +29,14 @@ exports.selectQuestion = async (data) => {
     let sql = ` SELECT question_title, question_content, question_type
                 FROM base_question
                 WHERE question_id = ${question_id}`;
+    return await query(sql);
+}
+
+exports.selectQuestions = async (data) => {
+    const { user_id } = data;
+    let sql = ` SELECT *
+                FROM base_question
+                WHERE user_id = ${user_id}`;
     return await query(sql);
 }
 

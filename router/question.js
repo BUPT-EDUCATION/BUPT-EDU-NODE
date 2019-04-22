@@ -10,4 +10,6 @@ router.put(`${config.urlPrefix}/question`, controller.editQuestion);
 
 router.delete(`${config.urlPrefix}/question`, controller.deleteQuestion);
 
+router.get(`${config.urlPrefix}/questionList`, controller.getQuestionList);
+
 module.exports = router;

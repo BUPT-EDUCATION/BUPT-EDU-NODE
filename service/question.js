@@ -37,3 +37,7 @@ exports.getQuestion = async (data) => {
     });
 }
 
+exports.getQuestionList = async (data) => {
+    const { user_id } = data;
+    await questionDB.selectQuestions({ user_id });
+}
